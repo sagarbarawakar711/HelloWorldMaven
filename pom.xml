@@ -18,7 +18,7 @@
        <repository>
          <id>internal.repo</id>
          <name>Internal repo</name>
-         <url>file:///var/lib/jenkins/artifacts1</url>
+         <url>file:///var/lib/jenkins/art1</url>
        </repository>
    </distributionManagement>
 
