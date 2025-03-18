@@ -1,0 +1,37 @@
+version: 0.2
+
+env:
+  variables:
+    MAVEN_HOME: /usr/share/maven
+    JAVA_HOME: /usr/lib/jvm/java-1.8.0-openjdk-amd64
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk11
+      maven: 3.x
+    commands:   
+      - mvn --version
+      - java -version
+
+  pre_build:
+    commands:
+     - echo "Running pre-build steps"
+ 
+
+  build:
+    commands:
+     - echo "Building the project with Maven"
+     - mvn clean install
+     - docker build -t test-poc .
+      
+
+  post_build:
+    commands:
+     - echo "Post-build steps"
+     - echo "Build completed!"
+
+artifacts:
+  files:
+    - target/*.jar   # Include the generated JAR file from the target folder
+  discard-paths: yes
