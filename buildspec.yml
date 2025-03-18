@@ -7,7 +7,6 @@ phases:
       # Ensure AWS CodeBuild has the necessary permissions (Optional: install Docker or Maven if needed)
       - echo "Checking Maven version"
       - mvn --version
-      
 
   build:
     commands:
@@ -25,3 +24,4 @@ artifacts:
     - target/*.jar
     - imagedefinitions.json
   discard-paths: yes
+
