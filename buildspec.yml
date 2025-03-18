@@ -7,7 +7,6 @@ phases:
       # Ensure AWS CodeBuild has the necessary permissions (Optional: install Docker or Maven if needed)
       - echo "Checking Maven version"
       - mvn --version
-
   build:
     commands:
       - echo "Building the project with Maven"
@@ -18,10 +17,8 @@ phases:
       - docker tag test-poc:latest 495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest
       - docker push 495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest
       - echo '[{"name":"nginx","imageUri":"495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest"}]' > imagedefinitions.json
-
 artifacts:
   files:
     - target/*.jar
     - imagedefinitions.json
   discard-paths: yes
-
