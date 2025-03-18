@@ -1,17 +1,26 @@
 version: 0.2
+
+phases:
   pre_build:
     commands:
-     - echo "Running pre-build steps"
+      - echo "Running pre-build steps"
+      # Ensure AWS CodeBuild has the necessary permissions (Optional: install Docker or Maven if needed)
+      - echo "Checking Maven version"
+      - mvn --version
+
   build:
     commands:
-     - echo "Building the project with Maven"
-     - mvn clean install
-     - docker build -t test-poc .
+      - echo "Building the project with Maven"
+      - mvn clean install
+      - echo "Building the Docker image"
+      - docker build -t test-poc .
+
   post_build:
     commands:
-     - echo "Post-build steps"
-     - echo "Build completed!"
+      - echo "Post-build steps"
+      - echo "Build completed!"
+
 artifacts:
   files:
-    - target/*.jar   
+    - target/*.jar
   discard-paths: yes
