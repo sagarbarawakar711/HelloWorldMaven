@@ -18,13 +18,10 @@ phases:
       - docker build -t test-poc .
       - docker tag test-poc:latest 495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest
       - docker push 495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest
-
-  post_build:
-    commands:
-      - echo "Post-build steps"
-      - echo "Build completed!"
+      - echo '[ { "name": "nginx", "imageUri": "495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest" } ]' > imagedefinitions.json
 
 artifacts:
   files:
     - target/*.jar
+    - imagedefinitions.json
   discard-paths: yes
