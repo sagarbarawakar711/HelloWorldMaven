@@ -1,5 +1,5 @@
 # Use the latest official Nginx image
-FROM nginx:latest
+FROM nginx
 
 # Create the user and group 'llp'
 RUN groupadd -r llp && useradd -r -m -g llp llp
