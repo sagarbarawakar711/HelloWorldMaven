@@ -7,13 +7,13 @@ phases:
       # Ensure AWS CodeBuild has the necessary permissions (Optional: install Docker or Maven if needed)
       - echo "Checking Maven version"
       - mvn --version
+      -- aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 495599764944.dkr.ecr.us-east-1.amazonaws.com
 
   build:
     commands:
       - echo "Building the project with Maven"
       - mvn clean install
       - echo "Building the Docker image"
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 495599764944.dkr.ecr.us-east-1.amazonaws.com
       - docker build -t test-poc .
       - docker tag test-poc:latest 495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest
       - docker push 495599764944.dkr.ecr.us-east-1.amazonaws.com/test-poc:latest
